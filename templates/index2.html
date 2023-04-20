@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+
+<head>
+    <style>
+        .body {
+            --s: 50px;
+            --c: #1e1919;
+            --_s: calc(2*var(--s)) calc(2*var(--s));
+            --_g: 35.36% 35.36% at;
+            --_c: #0000 66%, #264c0f 68% 70%, #0000 72%;
+            background:
+                radial-gradient(var(--_g) 100% 25%, var(--_c)) var(--s) var(--s)/var(--_s),
+                radial-gradient(var(--_g) 0 75%, var(--_c)) var(--s) var(--s)/var(--_s),
+                radial-gradient(var(--_g) 100% 25%, var(--_c)) 0 0/var(--_s),
+                radial-gradient(var(--_g) 0 75%, var(--_c)) 0 0/var(--_s),
+                repeating-conic-gradient(var(--c) 0 25%, #ffffff00 0 50%) 0 0/var(--_s),
+                radial-gradient(var(--_c)) 0 calc(var(--s)/2)/var(--s) var(--s) var(--c);
+            background-attachment: fixed;
+        margin: 5rem;
+        padding: 2rem;
+        display: block;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        align-items: center;
+        }
+
+        .btn {
+            height: 50px;
+            width: 200px;
+            background-color: #ff1515;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            border-radius: 12px;
+            text-decoration: none;
+            display: block;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            font-size: 16px;
+            font-size: 20px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .btn:hover {
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .ne {
+            width : 40rem;
+            display: block;
+            color: rgb(0, 0, 0);
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            text-shadow: 2px 2px 8px #ffffff;
+            text-align: center;
+            background-color: #97f856;
+            border-radius: 20px;
+            margin: auto;
+        }
+
+        .div {
+            height: 25rem;
+            width: 28rem;
+            margin: auto;
+            background-color: rgb(255, 193, 118);
+            border-radius: 20px;
+
+        }
+
+        .maind {
+
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            align-items: center;
+            text-shadow: 2px 2px 8px #ff1515;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            align-items: center;
+            margin: auto;
+            display: block;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            right: 0;
+        }
+
+        input[type='file'] {
+            display: none;
+        }
+
+        label {
+            color: rgb(0, 0, 0);
+            height: 50px;
+            width: 170px;
+            border-radius: 12px;
+            background-color: #eda41c;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            font-size: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            text-shadow: 3px 3px 10px #ffffff;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+        p{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 20px;
+            text-shadow: 3px 3px 10px #ffffff;
+        }
+
+        .im {
+        }
+    </style>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+
+<body class='body'>
+    <div class="maind">
+        <h1 class="ne">Medicinal Plant Classifier</h1><br>
+        <div class="div">
+            {% if message %}<br><br>
+            <p>{{ message }}</p><br><br>
+            {% endif %}<br><br>
+            <p><b>The predicted plant is: {{ new }}</b></p>
+            <img class = "im" src="data:image/jpeg;base64,{{ image_data }}" width="256" height="256">
+        </div><br><br>
+        <form class='form' method="POST" action="{{ url_for('predict') }}" enctype="multipart/form-data">
+            <label for='custom-file-input'><span class="material-symbols-outlined">
+                    upload
+                </span> &nbsp;&nbsp; Upload Image
+                <input id='custom-file-input' type="file" name="file">
+            </label>
+            <br>
+            <input class="btn" type="submit" value="PREDICT!">
+        </form>
+    </div>
+</body>
+
+</html>
